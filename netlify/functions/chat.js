@@ -51,7 +51,7 @@ export default async (req) => {
       );
   }
 
-  const { message } = JSON.stringify({ type: body.typesystem, content: body.message })
+  const message = JSON.stringify({ type: typesystem, content: body.message })
 
   console.log(typesystem)
 
