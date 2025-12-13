@@ -6,45 +6,6 @@ export default async (req) => {
     return new Response("Method Not Allowed", { status: 405 });
   }
 
-  function settingSystem(typesystem){
-  switch (typesystem) {
-    case "blank":
-            fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/blank.txt')
-      .then((data) => data.text())
-      .then((text) => {
-        return text
-      }
-      );
-      break;
-    case "grammer":
-            fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/grammer.txt')
-      .then((data) => data.text())
-      .then((text) => {
-        return text
-      }
-      );
-      break;
-      case "meaning":
-            fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/meaning.txt')
-      .then((data) => data.text())
-      .then((text) => {
-        return text
-      }
-      );
-      break;
-      case "order":
-            fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/order.txt')
-      .then((data) => data.text())
-      .then((text) => {
-        return text
-      }
-      );
-      break;
-    default:
-      break;
-  }
-}
-
   let body;
   try {
     body = await req.json();
@@ -52,8 +13,47 @@ export default async (req) => {
     return new Response("Invalid JSON", { status: 400 });
   }
 
+  typesystem = ""
+
+  switch (body.typesystem) {
+    case "blank":
+            fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/blank.txt')
+      .then((data) => data.text())
+      .then((text) => {
+        typesystem = text
+      }
+      );
+      break;
+    case "grammer":
+            fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/grammer.txt')
+      .then((data) => data.text())
+      .then((text) => {
+        typesystem = text
+      }
+      );
+      break;
+      case "meaning":
+            fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/meaning.txt')
+      .then((data) => data.text())
+      .then((text) => {
+        typesystem = text
+      }
+      );
+      break;
+      case "order":
+            fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/order.txt')
+      .then((data) => data.text())
+      .then((text) => {
+        typesystem = text
+      }
+      );
+      break;
+    default:
+      break;
+  }
+
   const { message } = JSON.stringify({ type: body.typesystem, content: body.message })
-  const { systemmessage } = settingSystem(body.typesystem)
+  const { systemmessage } = typesystem
 
   const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
