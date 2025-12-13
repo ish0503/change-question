@@ -72,20 +72,33 @@ export default async (req) => {
     body: JSON.stringify({
       model: "gpt-4o-mini",
       messages: [
-        { role: "system", content: typesystem },
+        { role: "system", content: typesystem + "\nPlease use line breaks where appropriate in your answer." },
         { role: "user", content: message }
       ]
     })
   });
 
-  console.log(openaiRes)
+  const data = await openaiRes.json();
 
-  const data = await openaiRes.choices[0].message.content
+  if (!openaiRes.ok || !data.choices || !data.choices[0]) {
+    console.error("OpenAI API Error:", data);
 
-  console.log(data)
+    return new Response(
+      JSON.stringify({
+        error: "OpenAI API error",
+        detail: data
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" }
+      }
+    );
+  }
 
   return new Response(
-    data,
+    JSON.stringify({
+      reply: data.choices[0].message.content
+    }),
     {
       status: 200,
       headers: { "Content-Type": "application/json" }

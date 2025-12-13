@@ -84,7 +84,7 @@
 <!-- 채팅창 -->
 <div class="chat">
   <div class="messages" id="messages"></div>
-  <textarea name="" id="input" placeholder="메시지 입력 후 Enter" style="font-size:10px"></textarea>
+  <textarea name="" id="input" placeholder="메시지 입력 후 Enter" style="font-size:10px;"></textarea>
 </div>
 </div>
 
@@ -94,7 +94,11 @@
   const messages = document.getElementById("messages");
 
   input.addEventListener("keydown", async (e) => {
-    if (e.key === "Enter" && input.value.trim()) {
+    if (e.key === "Enter") {
+      e.preventDefault()
+      if (!input.value.trim()){
+        return
+      }
       const selected = document.querySelector('input[name="system"]:checked');
 
       if (!selected) {
@@ -104,7 +108,7 @@
       const text = input.value;
       input.value = "";
 
-      messages.innerHTML += `<div class="user"><p style="font-size:10px">${text}</p></div>`;
+      messages.innerHTML += `<div class="user"><p style="font-size:10px; white-space: pre-wrap; ">${text}</p></div>`;
 
       const res = await fetch("/.netlify/functions/chat", {
         method: "POST",
@@ -115,7 +119,7 @@
       });
 
       const data = await res.json();
-      messages.innerHTML += `<div class="bot"><p style="font-size:10px">${data.reply}</p></div>`;
+      messages.innerHTML += `<div class="bot"><p style="font-size:10px; white-space: pre-wrap; ">${data.reply}</p></div>`;
       messages.scrollTop = messages.scrollHeight;
     }
   });
