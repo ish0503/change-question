@@ -55,6 +55,14 @@ export default async (req) => {
   const { message } = JSON.stringify({ type: body.typesystem, content: body.message })
   const { systemmessage } = typesystem
 
+  console.log(JSON.stringify({
+      model: "gpt-4o-mini",
+      messages: [
+        { role: "system", content: systemmessage },
+        { role: "user", content: message }
+      ]
+    }))
+
   const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
