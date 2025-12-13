@@ -1,6 +1,13 @@
 // https://wikidocs.net/228921
 //토큰: https://platform.openai.com/usage
 
+
+const blankSystem = fetch('blank.txt') // (1)
+  .then((data) => data.text())  // (2)
+  .then((text) => {
+    console.log(text);
+  });  // (3)
+
 export default async (req) => {
   if (req.method !== "POST") {
     return new Response("Method Not Allowed", { status: 405 });
@@ -32,7 +39,6 @@ export default async (req) => {
 
   const data = await openaiRes.json();
 
-  // 🔥 핵심 방어 코드
   if (!openaiRes.ok || !data.choices || !data.choices[0]) {
     console.error("OpenAI API Error:", data);
 
