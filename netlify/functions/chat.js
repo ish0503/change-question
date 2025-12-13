@@ -18,7 +18,7 @@ export default async (req) => {
   var typesystem = ""
 
   if (body.typesystem == 'blank') {
-      fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/blank.txt')
+      await fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/blank.txt')
       .then((data) => data.text())
       .then((text) => {
         console.log(text ? true : false)
@@ -27,7 +27,7 @@ export default async (req) => {
       );
   }
   else if (body.typesystem == 'grammer') {
-      fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/grammer.txt')
+      await fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/grammer.txt')
       .then((data) => data.text())
       .then((text) => {
         typesystem = text
@@ -35,7 +35,7 @@ export default async (req) => {
       );
   }
   else if (body.typesystem == 'meaning') {
-      fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/meaning.txt')
+      await fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/meaning.txt')
       .then((data) => data.text())
       .then((text) => {
         typesystem = text
@@ -43,7 +43,7 @@ export default async (req) => {
       );
   }
   else if (body.typesystem == 'order') {
-      fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/order.txt')
+      await fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/order.txt')
       .then((data) => data.text())
       .then((text) => {
         typesystem = text
