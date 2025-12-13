@@ -51,17 +51,14 @@ export default async (req) => {
       );
   }
 
-  console.log(typesystem)
-
   const { message } = JSON.stringify({ type: body.typesystem, content: body.message })
-  const { systemmessage } = typesystem
 
-  console.log(systemmessage)
+  console.log(typesystem)
 
   console.log(JSON.stringify({
       model: "gpt-4o-mini",
       messages: [
-        { role: "system", content: systemmessage },
+        { role: "system", content: typesystem },
         { role: "user", content: message }
       ]
     }))
@@ -75,7 +72,7 @@ export default async (req) => {
     body: JSON.stringify({
       model: "gpt-4o-mini",
       messages: [
-        { role: "system", content: systemmessage },
+        { role: "system", content: typesystem },
         { role: "user", content: message }
       ]
     })
