@@ -13,7 +13,7 @@ export default async (req) => {
     return new Response("Invalid JSON", { status: 400 });
   }
 
-  typesystem = ""
+  var typesystem = ""
 
   switch (body.typesystem) {
     case "blank":
@@ -52,8 +52,12 @@ export default async (req) => {
       break;
   }
 
+  console.log(typesystem)
+
   const { message } = JSON.stringify({ type: body.typesystem, content: body.message })
   const { systemmessage } = typesystem
+  
+  console.log(systemmessage)
 
   console.log(JSON.stringify({
       model: "gpt-4o-mini",
