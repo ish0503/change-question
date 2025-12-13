@@ -78,7 +78,7 @@ export default async (req) => {
     })
   });
 
-  const data = await response.choices[0].message.content
+  const data = await openaiRes.choices[0].message.content
 
   console.log(data)
 
