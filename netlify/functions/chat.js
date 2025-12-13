@@ -78,27 +78,12 @@ export default async (req) => {
     })
   });
 
-  const data = await openaiRes.json();
+  const data = await response.choices[0].message.content
 
-  if (!openaiRes.ok || !data.choices || !data.choices[0]) {
-    console.error("OpenAI API Error:", data);
-
-    return new Response(
-      JSON.stringify({
-        error: "OpenAI API error",
-        detail: data
-      }),
-      {
-        status: 500,
-        headers: { "Content-Type": "application/json" }
-      }
-    );
-  }
+  console.log(data)
 
   return new Response(
-    JSON.stringify({
-      reply: data.choices[0].message.content
-    }),
+    data,
     {
       status: 200,
       headers: { "Content-Type": "application/json" }
