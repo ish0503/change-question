@@ -1,7 +1,12 @@
 // https://wikidocs.net/228921
 //토큰: https://platform.openai.com/usage
 
-function settingSystem(typesystem){
+export default async (req) => {
+  if (req.method !== "POST") {
+    return new Response("Method Not Allowed", { status: 405 });
+  }
+
+  function settingSystem(typesystem){
   switch (typesystem) {
     case "blank":
             fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/blank.txt')
@@ -39,11 +44,6 @@ function settingSystem(typesystem){
       break;
   }
 }
-
-export default async (req) => {
-  if (req.method !== "POST") {
-    return new Response("Method Not Allowed", { status: 405 });
-  }
 
   let body;
   try {
