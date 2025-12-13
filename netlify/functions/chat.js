@@ -45,8 +45,15 @@ export default async (req) => {
     return new Response("Method Not Allowed", { status: 405 });
   }
 
-  const { message } = JSON.stringify({ type: req.typesystem, content: req.message })
-  const { systemmessage } = settingSystem(req.typesystem)
+  let body;
+  try {
+    body = await req.json();
+  } catch {
+    return new Response("Invalid JSON", { status: 400 });
+  }
+
+  const { message } = JSON.stringify({ type: body.typesystem, content: body.message })
+  const { systemmessage } = settingSystem(body.typesystem)
 
   const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",

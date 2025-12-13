@@ -13,8 +13,7 @@
       height: 100vh;
     }
     .chat {
-      width: 400px;
-      height: 600px;
+      height: 800px;
       background: white;
       display: flex;
       flex-direction: column;
@@ -33,6 +32,9 @@
       padding: 10px;
       box-sizing: border-box;
     }
+    #input {
+      height: 20%;
+    }
     .container {
       display: flex;
       gap: 20px; /* 두 영역 사이 간격 */
@@ -41,11 +43,14 @@
     }
 
     .system-selector, .chat {
-      width: 300px; /* 동일한 너비로 맞추기 */
+      width: 500px; /* 동일한 너비로 맞추기 */
     }
     .submit-container {
       margin-top: 10px; /* 버튼과 라디오 선택지 사이 간격 */
       text-align: center; /* 가운데 정렬 */
+    }
+    p {
+      word-wrap: break-word;
     }
   </style>
 </head>
@@ -79,7 +84,7 @@
 <!-- 채팅창 -->
 <div class="chat">
   <div class="messages" id="messages"></div>
-  <input id="input" placeholder="메시지 입력 후 Enter" />
+  <textarea name="" id="input" placeholder="메시지 입력 후 Enter" style="font-size:10px"></textarea>
 </div>
 </div>
 
@@ -99,18 +104,18 @@
       const text = input.value;
       input.value = "";
 
-      messages.innerHTML += `<div class="user">${text}</div>`;
+      messages.innerHTML += `<div class="user"><p style="font-size:10px">${text}</p></div>`;
 
       const res = await fetch("/.netlify/functions/chat", {
         method: "POST",
-        body: { 
+        body: JSON.stringify({ 
           typesystem: selected.value,
           message: text 
-        }
+        })
       });
 
       const data = await res.json();
-      messages.innerHTML += `<div class="bot">${data.reply}</div>`;
+      messages.innerHTML += `<div class="bot"><p style="font-size:10px">${data.reply}</p></div>`;
       messages.scrollTop = messages.scrollHeight;
     }
   });
