@@ -15,7 +15,7 @@ export default async (req) => {
 
   const { message } = body;
 
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+  const openaiRes = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -30,7 +30,23 @@ export default async (req) => {
     })
   });
 
-  const data = await response.json();
+  const data = await openaiRes.json();
+
+  // 🔥 핵심 방어 코드
+  if (!openaiRes.ok || !data.choices || !data.choices[0]) {
+    console.error("OpenAI API Error:", data);
+
+    return new Response(
+      JSON.stringify({
+        error: "OpenAI API error",
+        detail: data
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" }
+      }
+    );
+  }
 
   return new Response(
     JSON.stringify({
@@ -38,9 +54,7 @@ export default async (req) => {
     }),
     {
       status: 200,
-      headers: {
-        "Content-Type": "application/json"
-      }
+      headers: { "Content-Type": "application/json" }
     }
   );
 };
