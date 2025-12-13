@@ -2,10 +2,10 @@
 //토큰: https://platform.openai.com/usage
 
 
-const blankSystem = ""
-const grammerSystem = ""
-const meaningSystem = ""
-const orderSystem = ""
+var blankSystem = ""
+var grammerSystem = ""
+var meaningSystem = ""
+var orderSystem = ""
 
 fetch('blank.txt')
   .then((data) => data.text())
