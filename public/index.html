@@ -35,6 +35,7 @@
       box-sizing: border-box;
     }
   </style>
+  <script src="/.netlify/functions/chat.js"></script>
 </head>
 <body>
 
@@ -42,7 +43,6 @@
   <div class="messages" id="messages"></div>
   <input id="input" placeholder="메시지 입력 후 Enter" />
 </div>
-
 <script>
   const input = document.getElementById("input");
   const messages = document.getElementById("messages");
