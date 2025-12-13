@@ -7,28 +7,28 @@ var grammerSystem = ""
 var meaningSystem = ""
 var orderSystem = ""
 
-fetch('blank.txt')
+fetch('https://github.com/ish0503/change-question/blob/main/blank.txt')
   .then((data) => data.text())
   .then((text) => {
     blankSystem = text
     console.log(blankSystem);
   }
 );
-fetch('grammer.txt')
+fetch('https://github.com/ish0503/change-question/blob/main/grammer.txt')
   .then((data) => data.text())
   .then((text) => {
     grammerSystem = text
     console.log(grammerSystem);
   }
 );
-fetch('meaning.txt')
+fetch('https://github.com/ish0503/change-question/blob/main/meaning.txt')
   .then((data) => data.text())
   .then((text) => {
     meaningSystem = text
     console.log(meaningSystem);
   }
 );
-fetch('order.txt')
+fetch('https://github.com/ish0503/change-question/blob/main/order.txt')
   .then((data) => data.text())
   .then((text) => {
     orderSystem = text
