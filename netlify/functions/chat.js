@@ -2,11 +2,40 @@
 //토큰: https://platform.openai.com/usage
 
 
-const blankSystem = fetch('blank.txt') // (1)
-  .then((data) => data.text())  // (2)
+const blankSystem = ""
+const grammerSystem = ""
+const meaningSystem = ""
+const orderSystem = ""
+
+fetch('blank.txt')
+  .then((data) => data.text())
   .then((text) => {
-    console.log(text);
-  });  // (3)
+    blankSystem = text
+    console.log(blankSystem);
+  }
+);
+fetch('grammer.txt')
+  .then((data) => data.text())
+  .then((text) => {
+    grammerSystem = text
+    console.log(grammerSystem);
+  }
+);
+fetch('meaning.txt')
+  .then((data) => data.text())
+  .then((text) => {
+    meaningSystem = text
+    console.log(meaningSystem);
+  }
+);
+fetch('order.txt')
+  .then((data) => data.text())
+  .then((text) => {
+    orderSystem = text
+    console.log(orderSystem);
+  }
+);
+
 
 export default async (req) => {
   if (req.method !== "POST") {
