@@ -78,6 +78,8 @@ export default async (req) => {
     })
   });
 
+  console.log(openaiRes)
+
   const data = await openaiRes.choices[0].message.content
 
   console.log(data)
