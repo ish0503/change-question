@@ -6,12 +6,16 @@ export default async (req) => {
     return new Response("Method Not Allowed", { status: 405 });
   }
 
+  console.log(req)
+
   let body;
   try {
     body = await req.json();
   } catch {
     return new Response("Invalid JSON", { status: 400 });
   }
+
+  console.log(body)
 
   var typesystem = ""
 
@@ -56,7 +60,7 @@ export default async (req) => {
 
   const { message } = JSON.stringify({ type: body.typesystem, content: body.message })
   const { systemmessage } = typesystem
-  
+
   console.log(systemmessage)
 
   console.log(JSON.stringify({
