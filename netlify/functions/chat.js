@@ -6,6 +6,8 @@ export default async (req) => {
     return new Response("Method Not Allowed", { status: 405 });
   }
 
+  console.log(process.env.OPENAI_API_KEY ? true : false)
+
   let body;
   try {
     body = await req.json();
