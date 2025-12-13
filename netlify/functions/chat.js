@@ -17,42 +17,38 @@ export default async (req) => {
 
   var typesystem = ""
 
-  switch (body.typesystem) {
-    case 'blank':
-            fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/blank.txt')
+  if (body.typesystem == 'blank') {
+      fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/blank.txt')
+      .then((data) => data.text())
+      .then((text) => {
+        console.log(text ? true : false)
+        typesystem = text
+      }
+      );
+  }
+  else if (body.typesystem == 'grammer') {
+      fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/grammer.txt')
       .then((data) => data.text())
       .then((text) => {
         typesystem = text
       }
       );
-      break;
-    case 'grammer':
-            fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/grammer.txt')
+  }
+  else if (body.typesystem == 'meaning') {
+      fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/meaning.txt')
       .then((data) => data.text())
       .then((text) => {
         typesystem = text
       }
       );
-      break;
-      case 'meaning':
-            fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/meaning.txt')
+  }
+  else if (body.typesystem == 'order') {
+      fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/order.txt')
       .then((data) => data.text())
       .then((text) => {
         typesystem = text
       }
       );
-      break;
-      case 'order':
-            fetch('https://raw.githubusercontent.com/ish0503/change-question/refs/heads/main/order.txt')
-      .then((data) => data.text())
-      .then((text) => {
-        typesystem = text
-      }
-      );
-      break;
-    default:
-      console.warn("제대로 처리가 되지 않음.");
-      break;
   }
 
   console.log(typesystem)
