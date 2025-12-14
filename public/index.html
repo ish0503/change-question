@@ -10,10 +10,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100dvh;
+      min-height: 100vh;
     }
     .chat {
-      height: 800px;
+      height: 100%;
+      max-height: 800px;
       background: white;
       display: flex;
       flex-direction: column;
@@ -43,7 +45,8 @@
     }
 
     .system-selector, .chat {
-      width: 500px; /* 동일한 너비로 맞추기 */
+      width: 100%;
+      max-width: 500px; /* 동일한 너비로 맞추기 */
     }
     .submit-container {
       margin-top: 10px; /* 버튼과 라디오 선택지 사이 간격 */
@@ -146,3 +149,4 @@
 </body>
 
 </html>
+
