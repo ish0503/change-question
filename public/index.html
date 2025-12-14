@@ -79,9 +79,6 @@
       <label>
         <input type="radio" name="system" value="order"> Order
       </label>
-      <div class="submit-container">
-        <button type="submit">Submit</button>
-      </div>
     </form>
   </div>
 
@@ -106,7 +103,7 @@
       const selected = document.querySelector('input[name="system"]:checked');
 
       if (!selected) {
-        alert("문제 유형을 선택하고 submit을 누른 뒤 본문을 보내세요.");
+        alert("문제 유형을 선택하고 본문을 보내세요.");
         return;
       }
       const text = input.value;
@@ -128,27 +125,9 @@
     }
   });
 </script>
-
-  <script>
-    // 선택창 스크립트
-    const form = document.getElementById("systemForm");
-
-    form.addEventListener("submit", function(event) {
-      event.preventDefault(); // 폼 기본 제출 방지
-
-      const selected = document.querySelector('input[name="system"]:checked');
-
-      if (!selected) {
-        alert("문제유형을 선택하고 submit을 눌러주세요.");
-        return;
-      }
-
-      console.log("Selected system:", selected.value);
-      alert("You selected: " + selected.value);
-    });
-  </script>
 </body>
 
 </html>
+
 
 
